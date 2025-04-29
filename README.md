@@ -1,2 +1,1 @@
-# CareSync
-Doctor Appointment App
+# CareSync: Doctor Appointment App
