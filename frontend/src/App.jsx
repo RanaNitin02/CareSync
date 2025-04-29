@@ -1,11 +1,11 @@
-import { useState } from 'react'
-
+import './app.css'
+import Layout from './layout/Layout.jsx'
 
 function App() {
 
   return (
     <>
-      <h1>Welcome to the CareSync App</h1>
+      <Layout />
     </>
   )
 }
