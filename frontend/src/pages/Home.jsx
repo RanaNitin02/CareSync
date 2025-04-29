@@ -16,7 +16,7 @@ import avatarIcon from '../assets/images/avatar-icon.png'
 import featureImg from '../assets/images/feature-img.png'
 import videoIcon from '../assets/images/video-icon.png'
 import FaqList from '../components/Faq/FaqList'
-import Testimonal from '../components/Testimonal/Testimonal'
+import Testimonal from '../components/Testimonal/Testimonal.jsx'
 
 const Home = () => {
 
@@ -264,7 +264,7 @@ const Home = () => {
             <div className="container">
               <div className='xl:w-[470px] mx-auto'>
                 <h2 className='heading text-center'>What our patients say</h2>
-                <p className='text_para text-center'>World-classcare for everyone. Our health system offers unmatched, expert health care.</p>
+                <p className='text__para text-center'>World-classcare for everyone. Our health system offers unmatched, expert health care.</p>
               </div>
 
               <Testimonal />
