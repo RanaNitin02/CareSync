@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 
 import authRouter from './routes/auth.router.js';
 
+
 dotenv.config();
 
 
@@ -23,10 +24,7 @@ app.get('/', (req, res) => {
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(process.env.MONGO_URL);
         console.log('✅ MongoDB connected');
     } catch (error) {
         console.error('❌ MongoDB connection error:', error.message);
@@ -43,5 +41,5 @@ app.use('/api/v1/auth', authRouter);
 
 app.listen(port, () => {
     connectDB();
-    console.log(`✅ Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 })
