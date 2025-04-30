@@ -4,8 +4,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 
-import authRouter from './routes/auth.router.js';
-
+import authRouter from './routes/auth.router.js'
+import userRouter from './routes/user.router.js'
+import doctorRouter from './routes/doctor.router.js'
+import reviewRouter from './routes/review.router.js'
 
 dotenv.config();
 
@@ -21,10 +23,14 @@ app.get('/', (req, res) => {
     res.send('Api is working!')
 })
 
+mongoose.set('strictQuery', false);
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URL);
+        await mongoose.connect(process.env.MONGO_URL,{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         console.log('✅ MongoDB connected');
     } catch (error) {
         console.error('❌ MongoDB connection error:', error.message);
@@ -37,6 +43,9 @@ app.use(cookieParser());
 app.use(cors(corsOption));
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/doctors', doctorRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 
 app.listen(port, () => {
