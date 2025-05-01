@@ -1,10 +1,10 @@
 import { useState } from 'react'
-// import { BASE_URL } from '../config'
+import { BASE_URL } from '../config'
 import { toast } from 'react-toastify'
 import HashLoader from 'react-spinners/HashLoader'
 import signupImg from '../assets/images/signup.gif'
 import { Link, useNavigate } from 'react-router-dom';
-import uploadImageToCloudinary from '../utils/uploadCloudinary'
+import uploadImageToCloudinary from '../utils/uploadCloudinary';
 
 
 const Signup = () => {
@@ -31,15 +31,42 @@ const Signup = () => {
   const handleFileInputChange = async (e) => {
 
     const file = e.target.files[0]
-    console.log(file);
-    // use cloudinary to upload image
+    const data = await uploadImageToCloudinary(file)
+    console.log(data);
+    setpreviewURL(data.url)
+    setselectedFile(data.url)
+    setFormData({ ...formData, photo: data.url })
   }
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true)
+    
+    // api call 
+    try {
+      
+      const res = await fetch(`${BASE_URL}/auth/register`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
 
-    // api call      
+      const {message} = await res.json()
+
+      if(!res.ok){
+        throw new Error(message)
+      }
+
+      setLoading(false)
+      toast.success(message)
+      navigate("/login")
+
+    } catch (error) {
+        toast.error(error.message)
+        setLoading(false);
+    }     
   }
 
   return (

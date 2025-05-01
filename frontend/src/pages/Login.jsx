@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-// import { BASE_URL } from '../config'
+import { useState, useContext } from 'react'
+import { BASE_URL } from '../config'
 import { toast } from 'react-toastify'
 import HashLoader from 'react-spinners/HashLoader'
 import { Link, useNavigate } from 'react-router-dom';
+import { authContext } from '../context/AuthContext.jsx'
 
 const Login = () => {
 
@@ -13,17 +14,55 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  
+  const {dispatch} = useContext(authContext)
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const submitHandler = async(e) => {
-    e.preventDefault();
-    setLoading(true)
+  const submitHandler = async (e) => {
+      e.preventDefault();
+      setLoading(true)
+      
+      // api call 
+      try {
+        
+        const res = await fetch(`${BASE_URL}/auth/login`,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+  
+        const result = await res.json()
+  
+        if(!res.ok){
+          throw new Error(result.message)
+        }
 
-    // api call 
-  }
+        dispatch({ 
+          type: 'LOGIN_SUCCESS', 
+          payload: {
+            user: result.data,
+            token: result.token,
+            role: result.role,
+          } 
+        })
+
+        console.log("Login data: ", result);
+        
+  
+        setLoading(false)
+        toast.success(result.message)
+        navigate("/home")
+  
+      } catch (error) {
+          toast.error(error.message)
+          setLoading(false);
+      }     
+    }
   
   return (
     <section className='px-5 lg:px-0 sm:mt-10 '>
