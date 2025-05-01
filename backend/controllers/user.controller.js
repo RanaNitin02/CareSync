@@ -1,5 +1,7 @@
 import User from "../models/user.model.js";
+import Doctor from '../models/doctor.model.js'
 import Bookings from "../models/booking.model.js";
+
 
 export const updateUser = async (req, res) => {
 
@@ -49,6 +51,7 @@ export const getSingleUser = async (req, res) => {
     }
 }
 
+
 export const getAllUser = async (req, res) => {
 
     try {
@@ -95,9 +98,9 @@ export const getMyAppointments = async(req, res) => {
         const doctorsIds =  bookings.map(ele => ele.doctor.id)
 
         // extract doctors from doctor ids
-        const doctors = await Doctors.find({_id: {$in: doctorsIds}}).select('-password')
+        const doctors = await Doctor.find({_id: {$in: doctorsIds}}).select('-password')
 
-        res.json({success: true, message: 'Appointment are getting', data: {doctors}})
+        res.json({success: true, message: 'Appointments are getting', data: doctors})
 
     } catch (error) {
         res.status(500).json({success: false, message: 'failed in getting my appointments'});

@@ -1,6 +1,7 @@
 import Doctor from "../models/doctor.model.js";
 import Bookings from "../models/booking.model.js";
 
+
 export const updateDoctor = async (req, res) => {
     const id = req.params.id;
     try {
@@ -10,6 +11,7 @@ export const updateDoctor = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to update doctor' });
     }
 };
+
 
 export const deleteDoctor = async (req, res) => {
     const id = req.params.id;
@@ -21,6 +23,7 @@ export const deleteDoctor = async (req, res) => {
     }
 };
 
+
 export const getSingleDoctor = async (req, res) => {
     const id = req.params.id;
     try {
@@ -30,6 +33,7 @@ export const getSingleDoctor = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to find doctor' });
     }
 };
+
 
 export const getAllDoctor = async (req, res) => {
     try {
@@ -53,18 +57,23 @@ export const getAllDoctor = async (req, res) => {
     }
 };
 
+
 export const getDoctorProfile = async (req, res) => {
-    const docID = req.userId;
+    const docId = req.userId;
+
     try {
-        const doctor = await Doctor.findById(docID).select("-password"); // 🔹 Ensure 'about' is included
+
+        const doctor = await Doctor.findById(docId).select("-password");
+
         if (!doctor) {
             return res.status(404).json({ success: false, message: "Doctor not found" });
         }
 
-        const appointments = await Bookings.find({ doctor: docID });
+        const { password, ...rest } = doctor._doc
+        const appointments = await Bookings.find({ doctor: docId });
 
-        console.log("Doctor Profile Data:", doctor); // 🔹 Debugging log
-        res.json({ success: true, message: "Profile retrieved", data: { ...doctor._doc, appointments } });
+        res.status(200).json({ success: true, message: "Getting doctor profile", data: {...rest, appointments} });
+
     } catch (error) {
         console.error("Error fetching doctor profile:", error);
         res.status(500).json({ success: false, message: "Failed to retrieve doctor profile" });
