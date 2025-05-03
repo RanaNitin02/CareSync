@@ -1,7 +1,7 @@
 import { token } from "../config"
 import { useEffect, useState } from 'react'
 
-const UseFetchData = (url) => {
+const useFetchData = (url) => {
 
     const [data, setData] = useState([])
     const [error, setError] = useState(null)
@@ -42,4 +42,4 @@ const UseFetchData = (url) => {
   }
 }
 
-export default UseFetchData
+export default useFetchData

@@ -6,7 +6,7 @@ import starIcon from '../../assets/images/Star.png'
 
 const DoctorCard = ({doctor}) => {
 
-    const { name, avgRating, totalRating, photo, specialization, totalPatients, hospital } = doctor
+    const { name, avgRating, totalRating, photo, specialization, experiences } = doctor
 
   return (
     <div className='p-3 lg:p-5'>
@@ -34,8 +34,9 @@ const DoctorCard = ({doctor}) => {
 
         <div className="flex items-center justify-between mt-[18px] lg:mt-5 ">
             <div className='text-[16px] leading-7 lg:text-[18px] lg:leading-[30px] font-semibold text-headingColor '>
-                <h3>{totalPatients} <span className='text-primary'>+</span>  patients</h3>
-                <p className='text-[14px] leading-7 font-[400] text-textColor'>At {hospital}</p>
+                {/* <h3>{totalPatients} <span className='text-primary'>+</span>  patients</h3> */}
+                <p className='text-[14px] leading-7 font-[400] text-textColor'>
+                    At {experiences && experiences[0]?.hospital}</p>
             </div>
 
             <Link to={`/doctors/${doctor._id}`} onClick={() => window.scrollTo(0, 0)} className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primary hover:border-none' >

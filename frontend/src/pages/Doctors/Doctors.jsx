@@ -1,9 +1,33 @@
-import React from 'react'
-import { doctors } from '../../assets/data/doctors'
+import { useEffect, useState } from 'react'
+import { BASE_URL } from '../../config'
+import Error from '../../components/error/Error'
+import useFetchData from '../../hooks/useFetchData'
+import Loader from '../../components/loader/Loading'
 import DoctorCard from '../../components/Doctors/DoctorCard'
 import Testimonal from '../../components/testimonal/Testimonal'
 
 const Doctors = () => {
+
+  const [query, setQuery] = useState('')
+  const [debounceQuery, setdebounceQuery] = useState('')
+
+  const handleSearch = () => {
+    setQuery(query.trim())
+    console.log('handle search');
+    
+  }
+
+  useEffect(() => {
+
+    const timeout = setTimeout(() => {
+      setdebounceQuery(query)
+    }, 700);
+
+    return () => clearInterval(timeout)
+  }, [query])
+
+  const { data: doctors, loading, error } = useFetchData(`${BASE_URL}/doctors?query=${debounceQuery}`)
+
   return <>
 
     <section className="bg-[#fff9ea] py-6">
@@ -14,10 +38,10 @@ const Doctors = () => {
             type="search"
             className="py-3 px-4 bg-transparent w-full focus:outline-none cursor-pointer placeholder:text-gray-600"
             placeholder="Search doctor by name or specification"
-            // value={query}
-            // onChange={e => setQuery(e.target.value)}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
           />
-          <button  className="bg-primary text-white px-6 py-3 rounded-r-md hover:bg-blue-700 transition">
+          <button onClick={handleSearch} className="bg-primary text-white px-6 py-3 rounded-r-md hover:bg-blue-700 transition">
             Search
           </button>
         </div>
@@ -25,30 +49,31 @@ const Doctors = () => {
     </section>
 
     <section>
-        <div className="container">
+      <div className="container">
 
-          
+        {loading && <Loader />}
+        {error && <Error message={error.message} />}
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 '>
-            {
-                doctors.map((doctor) => (
-                    <DoctorCard key={doctor._id} doctor={doctor} />
-                ))
-            }
-          </div>
+        {!loading && !error && <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 '>
+          {
+            doctors.map((doctor) => (
+              <DoctorCard key={doctor._id} doctor={doctor} />
+            ))
+          }
+        </div>}
+      </div>
+    </section>
+
+    <section>
+      <div className="container">
+        <div className='xl:w-[470px] mx-auto'>
+          <h2 className='heading text-center'>What our patients say</h2>
+          <p className='text__para text-center'>World-classcare for everyone. Our health system offers unmatched, expert health care.</p>
         </div>
-      </section>
 
-      <section>
-            <div className="container">
-              <div className='xl:w-[470px] mx-auto'>
-                <h2 className='heading text-center'>What our patients say</h2>
-                <p className='text__para text-center'>World-classcare for everyone. Our health system offers unmatched, expert health care.</p>
-              </div>
-
-              <Testimonal />
-            </div>
-      </section>
+        <Testimonal />
+      </div>
+    </section>
 
   </>
 

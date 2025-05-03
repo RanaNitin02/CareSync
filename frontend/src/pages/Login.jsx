@@ -51,9 +51,9 @@ const Login = () => {
           } 
         })
 
-        console.log("Login data: ", result);
+        // console.log("Login data: ", result);
         
-  
+
         setLoading(false)
         toast.success(result.message)
         navigate("/home")
