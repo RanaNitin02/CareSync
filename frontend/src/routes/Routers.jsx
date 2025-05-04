@@ -5,9 +5,11 @@ import Signup from '../pages/Signup.jsx'
 import Contact from '../pages/Contact.jsx'
 import Services from '../pages/Services.jsx'
 import Doctors from '../pages/Doctors/Doctors.jsx'
+import CheckoutSuccess from '../pages/CheckoutSuccess.jsx'
 import DoctorDetails from '../pages/Doctors/DoctorDetails.jsx'
 import MyAccount from '../Dashboard/user-account/MyAccount.jsx'
 import Dashboard from '../Dashboard/doctor-account/Dashboard.jsx'
+
 
 import { Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute.jsx'
@@ -33,6 +35,7 @@ const Routers = () => {
           <Dashboard />
         </ProtectedRoute>} 
       />
+      <Route path='/checkout-session' element={<CheckoutSuccess />} />
     </Routes>
   )
 }
