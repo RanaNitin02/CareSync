@@ -21,24 +21,28 @@ const Profile = ({doctorData}) => {
     photo: null
   })
 
-  useEffect(() => {
-    if (doctorData) {
-      setFormData({
-        name: doctorData.name || '',
-        email: doctorData.email || '',
-        phone: doctorData.phone || '',
-        bio: doctorData.bio || '',
-        gender: doctorData.gender || '',
-        specialization: doctorData.specialization || '',
-        ticketPrice: doctorData.ticketPrice || 0,
-        qualifications: doctorData.qualifications || [],
-        experiences: doctorData.experiences || [],
-        timeSlots: doctorData.timeSlots || [],
-        about: doctorData.about || '',
-        photo: doctorData.photo || ''
-      });
-    }
-  }, [doctorData]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+useEffect(() => {
+  if (doctorData && !isInitialized) {
+    setFormData({
+      name: doctorData.name || '',
+      email: doctorData.email || '',
+      phone: doctorData.phone || '',
+      bio: doctorData.bio || '',
+      gender: doctorData.gender || '',
+      specialization: doctorData.specialization || '',
+      ticketPrice: doctorData.ticketPrice || 0,
+      qualifications: doctorData.qualifications || [],
+      experiences: doctorData.experiences || [],
+      timeSlots: doctorData.timeSlots || [],
+      about: doctorData.about || '',
+      photo: doctorData.photo || ''
+    });
+    setIsInitialized(true);
+  }
+}, [doctorData, isInitialized]);
+
 
   const handleInputChange = (e) => {
 
