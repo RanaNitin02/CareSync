@@ -40,7 +40,7 @@ const Dashboard = () => {
                   />
                 </svg>
                 <span className='sr-only'>Info</span>
-                <div className='ml-3 text-sm font-medium'>To get approval please complete your profile. We&apos;ll review manually and approve within 3days.</div>
+                <div className='ml-3 text-sm font-medium'>To get approval please complete your profile. We&apos;ll review manually and approve within 3-days.</div>
               </div>
               )}
 

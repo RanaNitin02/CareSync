@@ -6,7 +6,6 @@ import Error from '../../components/error/Error'
 import useGetProfile from '../../hooks/useFetchData'
 import Loading from '../../components/loader/Loading'
 import { authContext } from '../../context/AuthContext'
-import userImg from '..//../assets/images/doctor-img01.png'
 
 
 const MyAccount = () => {
@@ -22,6 +21,10 @@ const MyAccount = () => {
 
     const handleLogout = () => {
         dispatch({ type: 'LOGOUT' })
+    }
+
+    const handleDelete = () => {
+
     }
 
     return <section>
@@ -51,6 +54,7 @@ const MyAccount = () => {
                                 <div className="mt-[50px] md:mt-[100px]">
                                     <button onClick={handleLogout} className='bg-[#181E1A] p-3 text-[16px] rounded-md text-white w-full'>Logout</button> 
                                 </div>
+                                
                             </div>
 
                             <div className='md:col-span-2 md:px-[30px]'>
