@@ -1,4 +1,3 @@
-import React from 'react'
 import Home from '../pages/Home.jsx'
 import Login from '../pages/Login.jsx'
 import Signup from '../pages/Signup.jsx'
@@ -9,7 +8,6 @@ import CheckoutSuccess from '../pages/CheckoutSuccess.jsx'
 import DoctorDetails from '../pages/Doctors/DoctorDetails.jsx'
 import MyAccount from '../Dashboard/user-account/MyAccount.jsx'
 import Dashboard from '../Dashboard/doctor-account/Dashboard.jsx'
-
 
 import { Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute.jsx'

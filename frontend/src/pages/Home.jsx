@@ -15,7 +15,7 @@ import DoctorList from '../components/Doctors/DoctorList'
 import avatarIcon from '../assets/images/avatar-icon.png'
 import featureImg from '../assets/images/feature-img.png'
 import videoIcon from '../assets/images/video-icon.png'
-import FaqList from '../components/Faq/FaqList'
+import FaqList from '../components/Faq/FaqList.jsx'
 import Testimonal from '../components/Testimonal/Testimonal.jsx'
 
 const Home = () => {
