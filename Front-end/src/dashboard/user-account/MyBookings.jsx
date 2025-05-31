@@ -1,8 +1,8 @@
 import {BASE_URL} from '../../config'
-import Error from '../../components/Error/Error.jsx'
+import Error from '../../components/error/Error.jsx'
 import useFetchData from '../../hooks/useFetchData'
-import Loading from '../../components/Loader/Loading.jsx'
-import DoctorCard from '../../components/Doctors/DoctorCard'
+import Loading from '../../components/loader/Loading.jsx'
+import DoctorCard from '../../components/doctors/DoctorCard'
 
 const MyBookings = () => {
 

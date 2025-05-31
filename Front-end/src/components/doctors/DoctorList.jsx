@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Error from '../Error/Error.jsx'
+import Error from '../error/Error.jsx'
 import DoctorCard from './DoctorCard.jsx'
 import Loader from '../loader/Loading.jsx'
 import { BASE_URL } from '../../config.js'

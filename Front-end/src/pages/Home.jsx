@@ -15,11 +15,11 @@ import featureImg from '../assets/images/feature-img.png'
 import videoIcon from '../assets/images/video-icon.png'
 
 // Components
-import About from '../components/About/About.jsx'
-import DoctorList from '../components/Doctors/DoctorList'
-import FaqList from '../components/Faq/FaqList.jsx'
-import ServiceList from '../components/Services/ServiceList'
-import Testimonal from '../components/Testimonal/Testimonal.jsx'
+import About from '../components/about/About.jsx'
+import DoctorList from '../components/doctors/DoctorList'
+import FaqList from '../components/faq/FaqList.jsx'
+import ServiceList from '../components/services/ServiceList'
+import Testimonal from '../components/testimonal/Testimonal.jsx'
 
 
 const Home = () => {
