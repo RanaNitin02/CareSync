@@ -1,45 +1,46 @@
-import { token } from "../config"
 import { useEffect, useState } from 'react'
 
 const useFetchData = (url) => {
+  const [data, setData] = useState([])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
-    const [data, setData] = useState([])
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token') // Get token at runtime
 
-    useEffect(() => {
+      if (!token) {
+        setError('No token found ❌')
+        return
+      }
 
-        const fetchData = async() => {
+      setLoading(true)
 
-            setLoading(true)
+      try {
+        const res = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
 
-            try {
-                const res = await fetch(url, {
-                    headers: { Authorization: `Bearer ${token}` }
-                })
-    
-                const result = await res.json();
-    
-                if( !res.ok ){
-                    throw new Error(result.message + '👎')
-                }
+        const result = await res.json()
 
-                setData(result.data)
-                setLoading(false)
-
-            } catch (error) {
-                setLoading(false)
-                setError(error.message)
-            }
+        if (!res.ok) {
+          throw new Error(result.message || 'Request failed 👎')
         }
 
-        fetchData()
+        setData(result.data)
+        setLoading(false)
+      } catch (error) {
+        setLoading(false)
+        setError(error.message)
+      }
+    }
 
-    },[url])
+    fetchData()
+  }, [url])
 
-  return {
-    data, error, loading
-  }
+  return { data, error, loading }
 }
 
 export default useFetchData

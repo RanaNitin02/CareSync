@@ -2,9 +2,9 @@ import Profile from './Profile'
 import MyBookings from './MyBookings'
 import { BASE_URL } from '../../config'
 import { useContext, useState } from 'react'
-import Error from '../../components/error/Error'
+import Error from '../../components/Error/Error.jsx'
 import useGetProfile from '../../hooks/useFetchData'
-import Loading from '../../components/loader/Loading'
+import Loading from '../../components/Loader/Loading.jsx'
 import { authContext } from '../../context/AuthContext'
 
 
