@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Error from '../error/Error.jsx'
+import Error from '../Error/Error.jsx'
 import DoctorCard from './DoctorCard.jsx'
-import Loader from '../loader/Loading.jsx'
+import Loader from '../Loader/Loading.jsx'
 import { BASE_URL } from '../../config.js'
 import useFetchData from '../../hooks/useFetchData.jsx'
 
