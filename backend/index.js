@@ -17,7 +17,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const corsOption = {
-    origin: true
+    origin: "https://caresync-wzki.onrender.com"
 }
 
 app.get('/', (req, res) => {
