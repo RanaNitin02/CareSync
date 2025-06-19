@@ -20,10 +20,6 @@ const corsOption = {
     origin: "https://caresync-wzki.onrender.com"
 }
 
-app.get('/', (req, res) => {
-    res.send('Api is working!')
-})
-
 mongoose.set('strictQuery', false);
 
 const connectDB = async () => {
