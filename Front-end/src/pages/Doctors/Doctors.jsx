@@ -3,6 +3,7 @@ import { BASE_URL } from '../../config'
 import Error from '../../components/error/Error'
 import useFetchData from '../../hooks/useFetchData'
 import Loader from '../../components/loader/Loading'
+import { authContext } from '../../context/AuthContext'
 import DoctorCard from '../../components/doctors/DoctorCard'
 import Testimonal from '../../components/testimonal/Testimonal'
 
@@ -10,6 +11,8 @@ const Doctors = () => {
 
   const [query, setQuery] = useState('')
   const [debounceQuery, setdebounceQuery] = useState('')
+
+  const { user } = useContext(authContext)
 
   const handleSearch = () => {
     setQuery(query.trim())
@@ -50,7 +53,41 @@ const Doctors = () => {
 
     <section>
       <div className="container">
+        <div className="xl:w-[470px] mx-auto">
+          <h2 className="heading text-center">Our great doctors</h2>
+          <p className="text__para text-center">
+            World-class care for everyone. Our health system offers unmatched, expert health care.
+          </p>
+        </div>
 
+        {!user ? (
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 max-w-xl mx-auto mt-8">
+            <div className="flex flex-col items-center text-center">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
+                alt="Login required"
+                className="w-28 h-28 mb-4 object-contain"
+              />
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">Please log in</h2>
+              <p className="text-gray-600 mb-4">
+                You need to be logged in to view our expert doctor list.
+              </p>
+              <a
+                href="/login"
+                className="bg-primary text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+              >
+                Login
+              </a>
+            </div>
+          </div>
+        ) : (
+          <DoctorList />
+        )}
+      </div>
+    </section>
+
+    <section>
+      <div className="container">
         {loading && <Loader />}
         {error && <Error message={error.message} />}
 
