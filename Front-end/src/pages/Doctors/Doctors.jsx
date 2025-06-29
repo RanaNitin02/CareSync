@@ -3,7 +3,7 @@ import { BASE_URL } from '../../config'
 import Error from '../../components/error/Error'
 import useFetchData from '../../hooks/useFetchData'
 import Loader from '../../components/loader/Loading'
-import { authContext } from '../../context/AuthContext'
+import { authContext } from '../context/AuthContext.jsx'
 import DoctorCard from '../../components/doctors/DoctorCard'
 import Testimonal from '../../components/testimonal/Testimonal'
 
