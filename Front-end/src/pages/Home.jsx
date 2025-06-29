@@ -21,7 +21,8 @@ import FaqList from '../components/faq/FaqList.jsx'
 import ServiceList from '../components/services/ServiceList'
 import Testimonal from '../components/testimonal/Testimonal.jsx'
 
-import { authContext } from '../../context/AuthContext'
+import { authContext } from '../context/AuthContext.jsx'
+
 
 
 const Home = () => {
