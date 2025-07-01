@@ -17,7 +17,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const corsOption = {
-    origin: process.env.CLIENT_SITE_URL
+    origin: "https://caresync-grop.onrender.com"
 }
 
 mongoose.set('strictQuery', false);
